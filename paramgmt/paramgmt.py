@@ -329,7 +329,7 @@ class Controller(object):
       command.extend(self._ssh_options())
       if host.count(":") == 1:
         host, port = host.split(":")
-        command.extend(["-p", "{0}".format(port if port.isdigit() else "22")])
+        command.extend(["-P", "{0}".format(port if port.isdigit() else "22")])
       if self._user:
         rspec = '{0}@{1}'.format(self._user, host)
       else:
