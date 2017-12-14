@@ -289,6 +289,9 @@ class Controller(object):
     for host in self._hosts:
       command = ['ssh']
       command.extend(self._ssh_options())
+      if host.count(":") == 1:
+        host, port = host.split(":")
+        command.extend(["-p", "{0}".format(port if port.isdigit() else "22")])
       if self._user:
         rspec = '{0}@{1}'.format(self._user, host)
       else:
@@ -324,6 +327,9 @@ class Controller(object):
     for host in self._hosts:
       command = ['scp', '-r']
       command.extend(self._ssh_options())
+      if host.count(":") == 1:
+        host, port = host.split(":")
+        command.extend(["-p", "{0}".format(port if port.isdigit() else "22")])
       if self._user:
         rspec = '{0}@{1}'.format(self._user, host)
       else:
@@ -362,6 +368,9 @@ class Controller(object):
     for host in self._hosts:
       command = ['scp', '-r']
       command.extend(self._ssh_options())
+      if host.count(":") == 1:
+        host, port = host.split(":")
+        command.extend(["-p", "{0}".format(port if port.isdigit() else "22")])
       if self._user:
         rspec = '{0}@{1}'.format(self._user, host)
       else:
@@ -405,6 +414,9 @@ class Controller(object):
     for host in self._hosts:
       command = ['ssh', '-T']
       command.extend(self._ssh_options())
+      if host.count(":") == 1:
+        host, port = host.split(":")
+        command.extend(["-p", "{0}".format(port if port.isdigit() else "22")])
       if self._user:
         rspec = '{0}@{1}'.format(self._user, host)
       else:
